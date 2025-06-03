@@ -1,0 +1,65 @@
+public class Main {
+    public static void main(String[] args) {
+        Pizzeria p1 = new PizzeriaHawaiana();
+        Pizzeria p2 = new PizzeriaPepperoni();
+        Pizzeria p3 = new PizzeriaVegetariana();
+
+        p1.ordenarPizza();
+        p2.ordenarPizza();
+        p3.ordenarPizza();
+    }
+}
+
+// Interface Pizza
+interface Pizza {
+    void preparar();
+}
+
+// Clases concretas de Pizza
+class PizzaHawaiana implements Pizza {
+    public void preparar() {
+        System.out.println("Preparando Pizza Hawaiana con pinia y jamon.");
+    }
+}
+
+class PizzaPepperoni implements Pizza {
+    public void preparar() {
+        System.out.println("Preparando Pizza Pepperoni con queso extra.");
+    }
+}
+
+class PizzaVegetariana implements Pizza {
+    public void preparar() {
+        System.out.println("Preparando Pizza Vegetariana con vegetales frescos.");
+    }
+}
+
+// Clase abstracta Pizzeria
+abstract class Pizzeria {
+    public Pizza ordenarPizza() {
+        Pizza pizza = crearPizza();
+        pizza.preparar();
+        return pizza;
+    }
+
+    protected abstract Pizza crearPizza();
+}
+
+// Fábricas concretas
+class PizzeriaHawaiana extends Pizzeria {
+    protected Pizza crearPizza() {
+        return new PizzaHawaiana();
+    }
+}
+
+class PizzeriaPepperoni extends Pizzeria {
+    protected Pizza crearPizza() {
+        return new PizzaPepperoni();
+    }
+}
+
+class PizzeriaVegetariana extends Pizzeria {
+    protected Pizza crearPizza() {
+        return new PizzaVegetariana();
+    }
+}
