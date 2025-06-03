@@ -1,0 +1,78 @@
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Menu libanes:");
+        mostrarMenu(new RestauranteLibanesFactory());
+
+        System.out.println("\nMenu peruano:");
+        mostrarMenu(new RestaurantePeruanoFactory());
+
+        System.out.println("\nMenu costarricense:");
+        mostrarMenu(new RestauranteCostarricenseFactory());
+    }
+
+    public static void mostrarMenu(RestauranteFactory factory) {
+        factory.crearDesayuno().preparar();
+        factory.crearAlmuerzo().preparar();
+        factory.crearCena().preparar();
+    }
+}
+
+// Interfaces de productos
+interface Desayuno { void preparar(); }
+interface Almuerzo { void preparar(); }
+interface Cena { void preparar(); }
+
+// Fábrica abstracta
+interface RestauranteFactory {
+    Desayuno crearDesayuno();
+    Almuerzo crearAlmuerzo();
+    Cena crearCena();
+}
+
+// Líbano
+class DesayunoLibanes implements Desayuno {
+    public void preparar() { System.out.println("Labneh con pita y aceitunas."); }
+}
+class AlmuerzoLibanes implements Almuerzo {
+    public void preparar() { System.out.println("Shawarma con tabbouleh."); }
+}
+class CenaLibanesa implements Cena {
+    public void preparar() { System.out.println("Falafel con hummus y pan arabe."); }
+}
+class RestauranteLibanesFactory implements RestauranteFactory {
+    public Desayuno crearDesayuno() { return new DesayunoLibanes(); }
+    public Almuerzo crearAlmuerzo() { return new AlmuerzoLibanes(); }
+    public Cena crearCena() { return new CenaLibanesa(); }
+}
+
+// Perú
+class DesayunoPeruano implements Desayuno {
+    public void preparar() { System.out.println("Tamal con pan y cafe pasado."); }
+}
+class AlmuerzoPeruano implements Almuerzo {
+    public void preparar() { System.out.println("Lomo saltado con arroz."); }
+}
+class CenaPeruana implements Cena {
+    public void preparar() { System.out.println("Ceviche con chicha morada."); }
+}
+class RestaurantePeruanoFactory implements RestauranteFactory {
+    public Desayuno crearDesayuno() { return new DesayunoPeruano(); }
+    public Almuerzo crearAlmuerzo() { return new AlmuerzoPeruano(); }
+    public Cena crearCena() { return new CenaPeruana(); }
+}
+
+// Costa Rica
+class DesayunoCostarricense implements Desayuno {
+    public void preparar() { System.out.println("Gallo pinto con natilla y platano."); }
+}
+class AlmuerzoCostarricense implements Almuerzo {
+    public void preparar() { System.out.println("Casado con carne y frijoles."); }
+}
+class CenaCostarricense implements Cena {
+    public void preparar() { System.out.println("Olla de carne con arroz."); }
+}
+class RestauranteCostarricenseFactory implements RestauranteFactory {
+    public Desayuno crearDesayuno() { return new DesayunoCostarricense(); }
+    public Almuerzo crearAlmuerzo() { return new AlmuerzoCostarricense(); }
+    public Cena crearCena() { return new CenaCostarricense(); }
+}
